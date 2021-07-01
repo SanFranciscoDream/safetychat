@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778049111113",
+    "project_id": "safetychat-1a5fc",
+    "storage_bucket": "safetychat-1a5fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778049111113:android:29f05f92b1f724859f2b98",
+        "android_client_info": {
+          "package_name": "com.safetychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778049111113-qghdjfmdftn57s8buhsnjvfm1ksisiok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK0jeLaspi1BY6_5NGGzyIwojetOXTnFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778049111113-qghdjfmdftn57s8buhsnjvfm1ksisiok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
