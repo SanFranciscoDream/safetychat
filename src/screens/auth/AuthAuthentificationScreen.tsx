@@ -1,11 +1,17 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { useRootStore } from '../../base/hooks/useRootStore';
-import Navigation from '../../base/Navigation';
 import Container from '../../components/ui/Container';
+import Loader from '../../components/ui/Loader';
+import Input, { InputType } from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
+
+import Navigation from '../../base/Navigation';
 import { screens } from '../../navigator/consts/screens';
+
+import { colors } from '../../styles/colors';
 
 const AuthAuthentification = observer(() => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -21,50 +27,48 @@ const AuthAuthentification = observer(() => {
   }, []);
 
   return authStore.loader ? (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
-      <ActivityIndicator size="large" color="red" />
-    </View>
+    <Loader />
   ) : (
     <Container>
-      {/* Refactor to text global */}
-      <Text>Login with Phone {phoneNumber}</Text>
-      {/* Refactor to text global */}
+      <Text style={styles.headingText}>Enter your phone number</Text>
+      <Text style={styles.bodyText}>
+        <Text style={styles.bodyTextLogo}>SafetyChat</Text> will send an SMS to verify your phone number
+      </Text>
 
-      {/* Refactor to input global */}
-      <TextInput style={styles.input} value={phoneNumber} onChangeText={setPhoneNumber} />
-      {/* Refactor to input global */}
-
-      {/* Refactor to Button global */}
-      <TouchableOpacity style={styles.buttonWrapper} onPress={authentification}>
-        <Text style={styles.buttonText}>Sign in</Text>
-      </TouchableOpacity>
-      {/* Refactor to Button global */}
+      <Input type={InputType.PHONE} value={phoneNumber} setValue={setPhoneNumber} />
+      <Button extraStyle={styles.buttonExtra} title="Sign in" onClick={authentification} />
     </Container>
   );
 });
 export default AuthAuthentification;
 
 const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: '#333',
-    paddingHorizontal: 10,
-    marginTop: 10,
-    height: 45,
+  headingText: {
+    fontSize: 20,
+    lineHeight: 23,
+    fontFamily: 'NotoSansJP-Bold',
+    color: colors.primary,
+    alignSelf: 'center',
+    marginTop: 5,
   },
 
-  buttonWrapper: {
-    alignItems: 'center',
-    borderRadius: 4,
-    justifyContent: 'center',
-    height: 43,
+  bodyText: {
+    fontSize: 17,
+    lineHeight: 18,
+    textAlign: 'center',
     marginTop: 15,
-    backgroundColor: 'red',
+    fontFamily: 'NotoSansJP-Regular',
+    marginBottom: 15,
   },
 
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
+  bodyTextLogo: {
+    color: colors.primary,
+  },
+
+  buttonExtra: {
+    alignSelf: 'center',
+    paddingHorizontal: 50,
+    paddingVertical: 9,
+    marginTop: 20,
   },
 });

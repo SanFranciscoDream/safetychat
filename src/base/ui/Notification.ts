@@ -5,8 +5,6 @@ export default class Notification {
     showMessage({
       message: successMessage,
       type: 'success',
-      // type: 'default', // FOR custom colors
-      // backgroundColor: colors.success, // FOR custom colors
       icon: 'success',
     });
   };
@@ -15,8 +13,6 @@ export default class Notification {
     showMessage({
       message: errorMessage,
       type: 'danger',
-      // type: 'default', // FOR custom colors
-      // backgroundColor: colors.danger, // FOR custom colors
       icon: 'danger',
     });
   };

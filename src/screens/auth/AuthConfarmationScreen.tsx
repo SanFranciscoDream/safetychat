@@ -7,9 +7,9 @@ import { observer } from 'mobx-react-lite';
 
 import Container from '../../components/ui/Container';
 import { useRootStore } from '../../base/hooks/useRootStore';
+import { useConfirmCode } from '../../hooks/useConfirmCode';
 
 import { colors } from '../../styles/colors';
-import { useConfirmCode } from '../../hooks/useConfirmCode';
 
 const AuthConfarmationScreen = observer(() => {
   const { phoneNumber } = useRoute<any>().params;
@@ -27,11 +27,8 @@ const AuthConfarmationScreen = observer(() => {
 
   return (
     <Container>
-      {/* Refactor to Text global */}
-      <Text>Conformation code field</Text>
-      {/* Refactor to Text global */}
+      <Text style={styles.headingText}>Conformation code field</Text>
 
-      {/* Refactor to Code global */}
       <CodeField
         ref={ref}
         {...props}
@@ -52,23 +49,19 @@ const AuthConfarmationScreen = observer(() => {
           </Text>
         )}
       />
-      {/* Refactor to Code global */}
     </Container>
   );
 });
 export default AuthConfarmationScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.white,
-  },
-
-  textBody: {
-    fontSize: 25,
+  headingText: {
+    fontSize: 20,
+    lineHeight: 23,
     fontFamily: 'NotoSansJP-Bold',
+    color: colors.primary,
+    alignSelf: 'center',
+    marginTop: 5,
   },
 
   root: { flex: 1, padding: 20 },
@@ -80,12 +73,13 @@ const styles = StyleSheet.create({
     lineHeight: 49,
     fontSize: 24,
     borderWidth: 2,
-    borderColor: '#00000030',
+    borderColor: colors.placeholder350,
     textAlign: 'center',
     alignItems: 'center',
+    borderRadius: 10,
   },
 
   focusCell: {
-    borderColor: '#000',
+    borderColor: colors.primary,
   },
 });

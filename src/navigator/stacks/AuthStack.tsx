@@ -15,6 +15,10 @@ export const AuthStack = (
       component={AuthAuthentificationScreen}
       options={{ headerShown: false }}
     />
-    <Stack.Screen name={screens.AUTH_CONFARMATION} component={AuthConfarmationScreen} />
+    <Stack.Screen
+      name={screens.AUTH_CONFARMATION}
+      component={AuthConfarmationScreen}
+      options={{ title: 'Code confirm' }}
+    />
   </>
 );
