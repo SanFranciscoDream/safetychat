@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { observer } from 'mobx-react-lite';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, TextInput, ActivityIndicator, View } from 'react-native';
 
+import { useRootStore } from '../../base/hooks/useRootStore';
 import Navigation from '../../base/Navigation';
 import Container from '../../components/ui/Container';
 import { screens } from '../../navigator/consts/screens';
 
-const AuthAuthentification = () => {
+const AuthAuthentification = observer(() => {
   const [phoneNumber, setPhoneNumber] = useState('');
+
+  const { authStore } = useRootStore();
 
   const authentification = () => {
     Navigation.navigate(screens.AUTH_CONFARMATION, { phoneNumber });
   };
 
-  return (
+  useEffect(() => {
+    authStore.checkIsAuth();
+  }, []);
+
+  return authStore.loader ? (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
+      <ActivityIndicator size="large" color="red" />
+    </View>
+  ) : (
     <Container>
       {/* Refactor to text global */}
       <Text>Login with Phone {phoneNumber}</Text>
@@ -30,7 +41,7 @@ const AuthAuthentification = () => {
       {/* Refactor to Button global */}
     </Container>
   );
-};
+});
 export default AuthAuthentification;
 
 const styles = StyleSheet.create({

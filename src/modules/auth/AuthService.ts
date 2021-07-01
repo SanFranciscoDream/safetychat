@@ -14,6 +14,7 @@ export default class AuthService {
   signInWithPhone = async (phoneNumber: string) => {
     try {
       const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+
       return confirmation;
     } catch (e: any) {
       Notification.showError(JSON.stringify(e.message));
@@ -23,7 +24,41 @@ export default class AuthService {
   sendConfirmationCode = async (code: string, confirm: any) => {
     try {
       const data = await confirm.confirm(code);
+
       return this.authFactory.create<User>(User, data?.user?._user);
+    } catch (e: any) {
+      Notification.showError(JSON.stringify(e.message));
+    }
+  };
+
+  checkIsAuth = async () => {
+    try {
+      const data: any = await auth().currentUser;
+
+      return this.authFactory.create<User>(User, data?._user);
+    } catch (e: any) {
+      Notification.showError(JSON.stringify(e.message));
+    }
+  };
+
+  logout = async () => {
+    try {
+      const data = await auth().signOut();
+
+      return data;
+    } catch (e: any) {
+      Notification.showError(JSON.stringify(e.message));
+    }
+  };
+
+  changeUserInfo = async (displayName: string) => {
+    try {
+      const user = auth().currentUser;
+      await user?.updateProfile({
+        displayName,
+      });
+
+      return this.authFactory.create<User>(User, (auth().currentUser as any)?._user);
     } catch (e: any) {
       Notification.showError(JSON.stringify(e.message));
     }
