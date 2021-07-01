@@ -1,13 +1,13 @@
 import { useRoute } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text } from 'react-native';
-import { CodeField, Cursor } from 'react-native-confirmation-code-field';
 
 import { observer } from 'mobx-react-lite';
 
 import Container from '../../components/ui/Container';
 import { useRootStore } from '../../base/hooks/useRootStore';
 import { useConfirmCode } from '../../hooks/useConfirmCode';
+import CodeConfirm from './components/CodeConfirm';
 
 import { colors } from '../../styles/colors';
 
@@ -22,6 +22,7 @@ const AuthConfarmationScreen = observer(() => {
   }, []);
 
   const sendConfirmCode = () => {
+    console.log(value);
     authStore.sendConfirmationCode(value);
   };
 
@@ -29,25 +30,14 @@ const AuthConfarmationScreen = observer(() => {
     <Container>
       <Text style={styles.headingText}>Conformation code field</Text>
 
-      <CodeField
-        ref={ref}
-        {...props}
+      <CodeConfirm
+        refer={ref}
+        props={props}
         value={value}
-        onChangeText={setValue}
-        cellCount={CELL_COUNT}
-        rootStyle={styles.codeFieldRoot}
-        keyboardType="number-pad"
-        textContentType="oneTimeCode"
-        onEndEditing={sendConfirmCode}
-        renderCell={({ index, symbol, isFocused }) => (
-          <Text
-            style={[styles.cell, isFocused && styles.focusCell]}
-            onLayout={getCellOnLayoutHandler(index)}
-            key={index}
-          >
-            {symbol || (isFocused ? <Cursor /> : null)}
-          </Text>
-        )}
+        setValue={setValue}
+        CELL_COUNT={CELL_COUNT}
+        getCellOnLayoutHandler={getCellOnLayoutHandler}
+        sendConfirmCode={sendConfirmCode}
       />
     </Container>
   );
@@ -62,24 +52,5 @@ const styles = StyleSheet.create({
     color: colors.primary,
     alignSelf: 'center',
     marginTop: 5,
-  },
-
-  root: { flex: 1, padding: 20 },
-  title: { textAlign: 'center', fontSize: 30 },
-  codeFieldRoot: { marginTop: 10 },
-  cell: {
-    width: 50,
-    height: 50,
-    lineHeight: 49,
-    fontSize: 24,
-    borderWidth: 2,
-    borderColor: colors.placeholder350,
-    textAlign: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-
-  focusCell: {
-    borderColor: colors.primary,
   },
 });
