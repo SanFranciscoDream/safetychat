@@ -12,6 +12,7 @@ import Navigation from '../../base/Navigation';
 import { screens } from '../../navigator/consts/screens';
 
 import { colors } from '../../styles/colors';
+import ScreenImage, { ImageType } from '../../components/ScreenImage';
 
 const AuthAuthentification = observer(() => {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -35,9 +36,7 @@ const AuthAuthentification = observer(() => {
         <Text style={styles.bodyTextLogo}>SafetyChat</Text> will send an SMS to verify your phone number
       </Text>
       <Input type={InputType.PHONE} value={phoneNumber} setValue={setPhoneNumber} />
-      <View style={styles.imageWrapper}>
-        <Image style={styles.image} source={require('../../assets/images/hellosmurph.png')} />
-      </View>
+      <ScreenImage type={ImageType.AUTH} />
       <Button extraStyle={styles.buttonExtra} title="Sign in" onClick={authentification} />
     </Container>
   );
