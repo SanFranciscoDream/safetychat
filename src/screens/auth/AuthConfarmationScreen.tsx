@@ -22,7 +22,6 @@ const AuthConfarmationScreen = observer(() => {
   }, []);
 
   const sendConfirmCode = () => {
-    console.log(value);
     authStore.sendConfirmationCode(value);
   };
 
