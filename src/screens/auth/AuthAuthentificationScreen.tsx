@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Image, View } from 'react-native';
 
 import { useRootStore } from '../../base/hooks/useRootStore';
 import Container from '../../components/ui/Container';
@@ -34,8 +34,10 @@ const AuthAuthentification = observer(() => {
       <Text style={styles.bodyText}>
         <Text style={styles.bodyTextLogo}>SafetyChat</Text> will send an SMS to verify your phone number
       </Text>
-
       <Input type={InputType.PHONE} value={phoneNumber} setValue={setPhoneNumber} />
+      <View style={styles.imageWrapper}>
+        <Image style={styles.image} source={require('../../assets/images/hellosmurph.png')} />
+      </View>
       <Button extraStyle={styles.buttonExtra} title="Sign in" onClick={authentification} />
     </Container>
   );
@@ -44,20 +46,21 @@ export default AuthAuthentification;
 
 const styles = StyleSheet.create({
   headingText: {
-    fontSize: 20,
+    fontSize: 25,
     lineHeight: 23,
-    fontFamily: 'NotoSansJP-Bold',
+    fontFamily: 'Roboto-Bold',
     color: colors.primary,
     alignSelf: 'center',
-    marginTop: 5,
+    marginTop: 20,
+    textAlign: 'center',
   },
 
   bodyText: {
-    fontSize: 17,
-    lineHeight: 18,
+    fontSize: 19,
+    lineHeight: 23,
     textAlign: 'center',
     marginTop: 15,
-    fontFamily: 'NotoSansJP-Regular',
+    fontFamily: 'Roboto-Regular',
     marginBottom: 15,
   },
 
@@ -70,5 +73,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 50,
     paddingVertical: 9,
     marginTop: 20,
+  },
+
+  imageWrapper: {
+    width: '100%',
+    height: 200,
+    alignSelf: 'center',
+    marginTop: 30,
+  },
+
+  image: {
+    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
   },
 });

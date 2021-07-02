@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
 
   errorWarning: {
     fontSize: 20,
-    fontFamily: 'NotoSansJP-Medium',
+    fontFamily: 'Roboto-Medium',
   },
 });

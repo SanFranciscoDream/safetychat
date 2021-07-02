@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 
 import { useRootStore } from '../../../base/hooks/useRootStore';
 import Container from '../../../components/ui/Container';
+import Input, { InputType } from '../../../components/ui/Input';
 
 import { colors } from '../../../styles/colors';
 
@@ -18,12 +19,11 @@ const SettingsMainScreen = observer(() => {
 
   return (
     <Container>
-      <Text style={styles.textBody}>THIS IS SETTINGS_MAIN SCREEN</Text>
-      <TextInput style={styles.input} value={displayName} onChangeText={setDisplayName} />
-      <Text>{JSON.stringify(authStore.user)}</Text>
+      <Text style={styles.headingText}>Please fill in your profile</Text>
+      <Input type={InputType.DEFAULT} value={displayName} setValue={setDisplayName} label="Display name" />
 
-      <Button title="CHANGE" onPress={changeUserInfo} />
-      <Button title="LOG OUT" onPress={authStore.logout} />
+      {/* <Button title="CHANGE" onPress={changeUserInfo} />
+      <Button title="LOG OUT" onPress={authStore.logout} /> */}
     </Container>
   );
 });
@@ -39,16 +39,15 @@ const styles = StyleSheet.create({
 
   textBody: {
     fontSize: 25,
-    fontFamily: 'NotoSansJP-Bold',
+    fontFamily: 'Roboto-Bold',
   },
 
-  input: {
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: '#333',
-    paddingHorizontal: 10,
-    marginTop: 10,
-    height: 45,
-    width: '100%',
+  headingText: {
+    fontSize: 25,
+    lineHeight: 29,
+    fontFamily: 'Roboto-Bold',
+    color: colors.primary,
+    marginTop: 5,
+    marginBottom: 20,
   },
 });

@@ -41,7 +41,7 @@ const Input = ({ type, value, setValue, label }: InputProps) => {
 
   return (
     <>
-      {label && <Text>{label}</Text>}
+      {label && <Text style={styles.inputLabel}>{label}</Text>}
       {renderInput()}
     </>
   );
@@ -55,8 +55,14 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     borderColor: colors.primary350,
     paddingHorizontal: 10,
-    marginTop: 10,
+    marginTop: 6,
     height: 45,
     fontSize: 17,
+  },
+
+  inputLabel: {
+    fontSize: 17,
+    fontFamily: 'Roboto-Regular',
+    color: colors.secondary350,
   },
 });

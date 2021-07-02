@@ -2,7 +2,7 @@ import { colors } from '../styles/colors';
 
 export const stackOptions = {
   headerTitleStyle: {
-    fontFamily: 'NotoSansJP-Medium',
+    fontFamily: 'Roboto-Medium',
     color: colors.secondary,
   },
 };

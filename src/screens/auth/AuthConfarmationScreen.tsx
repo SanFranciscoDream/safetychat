@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   headingText: {
     fontSize: 20,
     lineHeight: 23,
-    fontFamily: 'NotoSansJP-Bold',
+    fontFamily: 'Roboto-Bold',
     color: colors.primary,
     alignSelf: 'center',
     marginTop: 5,

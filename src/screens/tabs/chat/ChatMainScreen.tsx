@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
 
   textBody: {
     fontSize: 25,
-    fontFamily: 'NotoSansJP-Bold',
+    fontFamily: 'Roboto-Bold',
   },
 });
