@@ -3,15 +3,18 @@ import React, { useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 import { useRootStore } from '../../../base/hooks/useRootStore';
+import ImagePicker from '../../../components/ImagePicker';
 import ScreenImage, { ImageType } from '../../../components/ScreenImage';
 import Button from '../../../components/ui/Button';
 import Container from '../../../components/ui/Container';
 import Input, { InputType } from '../../../components/ui/Input';
+import { useImagePicker } from '../../../hooks/useImagePicker';
 
 import { colors } from '../../../styles/colors';
 
 const SettingsMainScreen = observer(() => {
   const { authStore } = useRootStore();
+  const { image, changeImage } = useImagePicker();
 
   const [displayName, setDisplayName] = useState(authStore?.user?.displayName || '');
 
@@ -22,9 +25,10 @@ const SettingsMainScreen = observer(() => {
   return (
     <Container>
       <Text style={styles.headingText}>Please fill in your profile</Text>
+
+      <ImagePicker image={image} changeImage={changeImage} />
       <Input type={InputType.DEFAULT} value={displayName} setValue={setDisplayName} label="Display name" />
 
-      <ScreenImage type={ImageType.SETTINGS} />
       <Button title="CHANGE" extraStyle={styles.buttonExtra} onClick={changeUserInfo} />
       <Button title="LOGOUT" extraStyle={styles.buttonExtra} onClick={authStore.logout} />
     </Container>
